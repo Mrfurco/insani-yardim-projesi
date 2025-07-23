@@ -1,0 +1,24 @@
+version: '3.8' # Docker Compose dosya formatı versiyonu
+
+services:
+  # 'db' ismini verdiğimiz veritabanı servisimiz
+  db:
+    image: postgres:15-alpine # PostgreSQL'in 15. versiyonunu kullan, 'alpine' daha küçük bir versiyondur.
+    restart: always # Herhangi bir hatada veya başlangıçta kendini otomatik yeniden başlatsın.
+    environment:
+      # Veritabanı için kullanıcı adı, şifre ve veritabanı ismini belirliyoruz.
+      POSTGRES_USER: yardim_user
+      POSTGRES_PASSWORD: strong_password_123
+      POSTGRES_DB: insani_yardim_db
+    ports:
+      # Bilgisayarımızın 5432 portunu, Docker içindeki veritabanının 5432 portuna bağlıyoruz.
+      # Bu sayede Go uygulamamız veritabanına erişebilecek.
+      - "5432:5432"
+    volumes:
+      # Veritabanı verilerinin kalıcı olarak saklanacağı bir alan oluşturuyoruz.
+      # Bu sayede container silinse bile verilerimiz kaybolmaz.
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  # Yukarıda tanımladığımız 'postgres_data' alanını burada resmi olarak deklare ediyoruz.
+  postgres_data:

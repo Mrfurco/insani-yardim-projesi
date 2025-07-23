@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
+    <title>Khayrat AID</title>
+</head>
+
+<script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><strong>Khayrat AID</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Ana Sayfa</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Hakkımızda</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Projeler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Haberler</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">İletişim</a></li>
+                </ul>
+                <a href="#" class="btn btn-primary btn-custom-lime">Bağış Yap</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section text-white text-center">
+        <video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop" class="hero-video">
+            <source src="https://videos.pexels.com/video-files/3209828/3209828-hd_1280_720_25fps.mp4" type="video/mp4">
+        </video>
+        <div class="container hero-content">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h1 class="display-4 fw-bold">İyiliğe Açılan Kapı</h1>
+                    <p class="lead my-4">Küçük bir yardım, büyük bir umut olabilir. Dünyanın dört bir yanındaki ihtiyaç sahiplerine el uzatmak için bize katılın.</p>
+                    <a href="#" class="btn btn-lg btn-custom-lime">Online Bağış</a>
+                    <a href="#" class="btn btn-outline-light btn-lg">Projelerimiz</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="campaigns-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title">Öne Çıkan Kampanyalar</h2>
+                    <p class="lead text-muted">Sizlerin desteğiyle hayata geçen projelerimiz.</p>
+                </div>
+            </div>
+    
+            <div class="campaign-slider-wrapper">
+                <div class="swiper-clipper">
+                    <div class="swiper campaign-slider">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide"><div class="card h-100 shadow-sm campaign-card"><img src="https://images.pexels.com/photos/14028471/pexels-photo-14028471.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Kışlık Giysi Yardımı"><div class="card-body d-flex flex-column"><h5 class="card-title">Bu Kış Kimse Üşümesin</h5><p class="card-text text-muted small">Soğuk kış koşullarında, ihtiyaç sahibi ailelere ve çocuklara kışlık kıyafet setleri ulaştırıyoruz.</p><div class="progress mt-auto"><div class="progress-bar" style="width: 70%">70%</div></div><div class="d-flex justify-content-between mt-2"><small>Toplanan: 175,000 TL</small><small>Hedef: 250,000 TL</small></div><a href="#" class="btn btn-primary btn-custom-lime mt-3">Detayları İncele</a></div></div></div>
+                        <div class="swiper-slide"><div class="card h-100 shadow-sm campaign-card"><img src="https://images.pexels.com/photos/18451314/pexels-photo-18451314.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Filistin Yardımı"><div class="card-body d-flex flex-column"><h5 class="card-title">Filistin İçin Acil Yardım</h5><p class="card-text text-muted small">Gazze'deki ağır saldırılar altındaki ihtiyaç sahiplerine acil gıda, su ve tıbbi malzeme ulaştırıyoruz.</p><div class="progress mt-auto"><div class="progress-bar" style="width: 19%">19%</div></div><div class="d-flex justify-content-between mt-2"><small>Toplanan: 95,000 TL</small><small>Hedef: 500,000 TL</small></div><a href="#" class="btn btn-primary btn-custom-lime mt-3">Detayları İncele</a></div></div></div>
+                        <div class="swiper-slide"><div class="card h-100 shadow-sm campaign-card"><img src="https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Eğitim Bursu"><div class="card-body d-flex flex-column"><h5 class="card-title">Bir Burs Bir Gelecek</h5><p class="card-text text-muted small">Öğrencilerimizin eğitim hayatlarına devam edebilmeleri için burs desteği sağlayarak geleceklerine ışık tutuyoruz.</p><div class="progress mt-auto"><div class="progress-bar" style="width: 85%">85%</div></div><div class="d-flex justify-content-between mt-2"><small>Toplanan: 85,000 TL</small><small>Hedef: 100,000 TL</small></div><a href="#" class="btn btn-primary btn-custom-lime mt-3">Detayları İncele</a></div></div></div>
+                        <div class="swiper-slide"><div class="card h-100 shadow-sm campaign-card"><img src="https://images.pexels.com/photos/6646905/pexels-photo-6646905.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Su Kuyusu"><div class="card-body d-flex flex-column"><h5 class="card-title">Temiz Su Hayattır</h5><p class="card-text text-muted small">Afrika'da suya erişimi olmayan köylerde su kuyuları açarak binlerce insana temiz su sağlıyoruz.</p><div class="progress mt-auto"><div class="progress-bar" style="width: 60%">60%</div></div><div class="d-flex justify-content-between mt-2"><small>Toplanan: 60,000 TL</small><small>Hedef: 100,000 TL</small></div><a href="#" class="btn btn-primary btn-custom-lime mt-3">Detayları İncele</a></div></div></div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- =================== ÖNE ÇIKAN KAMPANYA BAŞLANGIÇ =================== -->
+    <section class="featured-campaign-section text-white text-center my-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-9 mx-auto">
+                    <h5 class="text-uppercase" style="color: var(--khayrat-lime-green);">ACİL YARDIM ÇAĞRISI</h5>
+                    <h1 class="display-5 fw-bold my-3">Filistin İçin Zaman Daralıyor</h1>
+                    <p class="lead mb-4">
+                        Gazze'de yaşanan insanlık dramına sessiz kalmayın. Acil gıda, su ve tıbbi malzeme yardımlarınızla bir hayata umut olabilirsiniz.
+                    </p>
+                    <a href="#" class="btn btn-lg btn-custom-lime">Hemen Bağış Yap</a>
+                    <a href="#" class="btn btn-outline-light btn-lg">Detayları Öğren</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- =================== ÖNE ÇIKAN KAMPANYA BİTİŞ =================== -->
+
+    <section class="news-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title">Birlikte Başardıklarımız</h2>
+                    <p class="lead text-muted">Sizden gelen destekle yeşeren umutların hikayesi.</p>
+                </div>
+            </div>
+
+            <div class="swiper news-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="news-card">
+                            <div class="news-card-date">20 Nisan 2025</div>
+                            <h5 class="news-card-title">Ramazan Ayında 10 Ülkede İftar Sofraları Kuruldu</h5>
+                            <p class="news-card-text">Bu mübarek ayda, gönüllülerimiz ve bağışçılarımızın desteğiyle 50.000'den fazla kişiye sıcak iftar yemeği ulaştırdık.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="news-card">
+                            <div class="news-card-date">15 Haziran 2025</div>
+                            <h5 class="news-card-title">Somali'de 5 Yeni Su Kuyusu Hizmete Açıldı</h5>
+                            <p class="news-card-text">Kuraklıkla mücadele eden Somali'nin köylerinde, binlerce insanın temiz suya erişimini sağlayan 5 yeni su kuyusunun açılışını gerçekleştirdik.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="news-card">
+                            <div class="news-card-date">5 Temmuz 2025</div>
+                            <h5 class="news-card-title">Kışlık Giyim Yardımları Yola Çıktı</h5>
+                            <p class="news-card-text">Yaklaşan kış öncesinde, yurt içindeki ihtiyaç sahibi aileler ve çocuklar için hazırlanan yardım tırlarımız yola çıktı.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="news-card">
+                            <div class="news-card-date">18 Temmuz 2025</div>
+                            <h5 class="news-card-title">Eğitim Bursu Programımıza Başvurular Başladı</h5>
+                            <p class="news-card-text">"Bir Burs Bir Gelecek" projemiz kapsamında, yeni eğitim-öğretim yılı için burs başvurularını almaya başladık.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="news-card">
+                            <div class="news-card-date">28 Haziran 2025</div>
+                            <h5 class="news-card-title">Kurban Bayramı'nda Vekaletler Sahiplerine Ulaştı</h5>
+                            <p class="news-card-text">Bu Kurban Bayramı'nda da bizlere emanet ettiğiniz vekaletler, 20'den fazla ülkede ihtiyaç sahiplerine ulaştırıldı.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-secondary">Tüm Haberleri Gör</a>
+            </div>
+        </div>
+    </section>
+
+    </script>
+
+    <section class="faq-section py-5">
+        <div class="container">
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title">Sıkça Sorulan Sorular</h2>
+                    <p class="lead text-muted">Aklınıza takılan soruların cevapları.</p>
+                </div>
+            </div>
+    
+            <div class="campaign-slider-wrapper">
+                <div class="swiper-clipper">
+                    <div class="swiper faq-slider"> <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="faq-card">
+                                    <h5 class="faq-question">Nasıl bağış yapabilirim?</h5>
+                                    <p class="faq-answer">Web sitemizdeki "Bağış Yap" butonlarını kullanarak online ve güvenli bir şekilde bağış yapabilirsiniz. Ayrıca, banka hesap numaralarımıza EFT/Havale yoluyla da destek olabilirsiniz.</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="faq-card">
+                                    <h5 class="faq-question">Bağışlarımın takibini nasıl yapabilirim?</h5>
+                                    <p class="faq-answer">Bağışlarınızın ihtiyaç sahiplerine ulaştırılması sürecini sitemizdeki "Projeler" ve "Haberler" bölümlerinden şeffaf bir şekilde takip edebilirsiniz.</p>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="faq-card">
+                                    <h5 class="faq-question">Gönüllü olarak nasıl destek olabilirim?</h5>
+                                    <p class="faq-answer">"İletişim" sayfamızdaki formu doldurarak veya sosyal medya hesaplarımızdan bize ulaşarak gönüllü ekibimize katılabilirsiniz.</p>
+                                </div>
+                            </div>
+                             <div class="swiper-slide">
+                                <div class="faq-card">
+                                    <h5 class="faq-question">Yardımlar sadece yurt dışına mı yapılıyor?</h5>
+                                    <p class="faq-answer">Hayır, Khayrat AID olarak hem yurt içinde hem de yurt dışında acil insani yardım, eğitim, sağlık ve kalkınma projeleri yürütmekteyiz.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-secondary">Tüm Soruları Gör</a>
+            </div>
+        </div>
+    </section>
+
+     <section class="media-section py-5">
+        <div class="container">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">Faaliyetlerimizden Görüntüler</h2>
+                    <p class="lead text-muted">Yardımlarınızın ulaştığı yerlerde yeşeren umut anları.</p>
+                </div>
+            </div>
+
+            <div class="swiper-clipper">
+                <div class="swiper media-slider">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <a href="https://images.pexels.com/photos/6647037/pexels-photo-6647037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="gallery-item glightbox" data-gallery="khayrat-gallery">
+                                <img src="https://images.pexels.com/photos/6647037/pexels-photo-6647037.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1" alt="Gıda Yardımı" class="img-fluid">
+                                <div class="gallery-overlay">
+                                    <h5 class="gallery-title">Gıda Paketi Dağıtımı</h5>
+                                    <i class="bi bi-zoom-in"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                             <a href="https://images.pexels.com/photos/1153976/pexels-photo-1153976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="gallery-item glightbox" data-gallery="khayrat-gallery">
+                                <img src="https://images.pexels.com/photos/1153976/pexels-photo-1153976.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1" alt="Eğitim Yardımı" class="img-fluid">
+                                <div class="gallery-overlay">
+                                    <h5 class="gallery-title">Eğitim Desteği</h5>
+                                    <i class="bi bi-zoom-in"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="swiper-slide">
+                            <a href="https://vimeo.com/115041822" class="gallery-item glightbox" data-gallery="khayrat-gallery">
+                                <img src="https://images.pexels.com/photos/2519392/pexels-photo-2519392.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1" alt="Su Kuyusu Videosu" class="img-fluid">
+                                <div class="gallery-overlay">
+                                    <h5 class="gallery-title">Afrika Su Kuyusu</h5>
+                                    <i class="bi bi-play-circle-fill"></i>
+                                </div>
+                            </a>
+                        </div>
+                         <div class="swiper-slide">
+                            <a href="https://images.pexels.com/photos/8947622/pexels-photo-8947622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="gallery-item glightbox" data-gallery="khayrat-gallery">
+                                <img src="https://images.pexels.com/photos/8947622/pexels-photo-8947622.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1" alt="Kurban Yardımı" class="img-fluid">
+                                <div class="gallery-overlay">
+                                    <h5 class="gallery-title">Kurban Bayramı</h5>
+                                    <i class="bi bi-zoom-in"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-outline-secondary">Tüm Galeriyi Gör</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-section pt-5 pb-4">
+        <div class="container text-center text-md-start">
+            <div class="row">
+                <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4"><h6 class="text-uppercase fw-bold mb-4">Khayrat AID</h6><p>İhtiyaç sahiplerine ulaşmak, yaraları sarmak ve daha yaşanabilir bir dünya inşa etmek için yola çıktık.</p></div>
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4"><h6 class="text-uppercase fw-bold mb-4">Projeler</h6><p><a href="#!" class="footer-link">Su Kuyusu</a></p><p><a href="#!" class="footer-link">Eğitim</a></p><p><a href="#!" class="footer-link">Gıda Yardımı</a></p><p><a href="#!" class="footer-link">Kışlık Giyim</a></p></div>
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4"><h6 class="text-uppercase fw-bold mb-4">Hızlı Erişim</h6><p><a href="#!" class="footer-link">Gönüllü Ol</a></p><p><a href="#!" class="footer-link">S.S.S.</a></p><p><a href="#!" class="footer-link">Hakkımızda</a></p><p><a href="#!" class="footer-link">İletişim</a></p></div>
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4"><h6 class="text-uppercase fw-bold mb-4">İletişim</h6><p><i class="bi bi-geo-alt-fill me-2"></i> İstanbul, Türkiye</p><p><i class="bi bi-envelope-fill me-2"></i> info@khayrataid.org</p><p><i class="bi bi-telephone-fill me-2"></i> +90 212 123 45 67</p></div>
+            </div>
+        </div>
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">© 2025 Copyright: <a class="fw-bold" href="#">KhayratAID.org</a></div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+     <script>
+        const campaignSwiper = new Swiper('.campaign-slider', {
+            loop: true,
+            spaceBetween: 30,
+            
+            // İstediğin gibi, büyük ekranlarda maksimum 3 kart gösterecek şekilde ayarlıyoruz.
+            slidesPerView: 1.2,
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                992: { slidesPerView: 3 } // Max 3 kart
+            },
+            
+            // GÜNCELLENEN BÖLÜM: Swiper'a yeni butonlarımızın yerini söylüyoruz
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+        });
+        // YENİ EKLENEN: Haberler Slider'ı
+        const newsSwiper = new Swiper('.news-slider', {
+            loop: true,
+            spaceBetween: 30,
+            slidesPerView: 1,
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                992: { slidesPerView: 3 }
+            },
+            // İlerleme çubuğu gibi görünen pagination
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        });
+
+        // YENİ EKLENEN: SSS Slider'ı
+        const faqSwiper = new Swiper('.faq-slider', {
+            loop: true,
+            spaceBetween: 30,
+            slidesPerView: 1,
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                992: { slidesPerView: 3 }
+            },
+            navigation: {
+                nextEl: '.faq-slider-nav .swiper-button-next',
+                prevEl: '.faq-slider-nav .swiper-button-prev',
+            },
+        });
+
+        const lightbox = GLightbox({
+            selector: '.glightbox'
+        });
+
+        // YENİ EKLENEN: Medya Slider'ı
+        const mediaSwiper = new Swiper('.media-slider', {
+            loop: true,
+            spaceBetween: 30,
+            slidesPerView: 1,
+            breakpoints: {
+                768: { slidesPerView: 2 },
+                992: { slidesPerView: 3 }
+            },
+            navigation: {
+                nextEl: '.media-slider-nav .swiper-button-next',
+                prevEl: '.media-slider-nav .swiper-button-prev',
+            },
+        });
+    </script>   
+    </script>
+
+    
+
+    
+    
+</body>
+</html>
+
