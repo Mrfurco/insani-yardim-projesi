@@ -1,3 +1,4 @@
 # Derlenmiş dosyaları ve işletim sistemi dosyalarını yoksay
 *.exe
 *.DS_Store
+static/uploads/*

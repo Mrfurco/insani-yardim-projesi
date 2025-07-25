@@ -1,0 +1,33 @@
+{{define "content"}}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1 class="h2">Kampanya Yönetimi</h1>
+    <a href="/admin/kampanyalar/yeni" class="btn btn-success">
+        <i class="bi bi-plus-circle-fill me-2"></i>Yeni Kampanya Ekle
+    </a>
+</div>
+<div class="card shadow-sm">
+    <div class="card-body">
+        <table class="table table-hover align-middle">
+            <thead class="table-light">
+                <tr><th>ID</th><th>Başlık</th><th>Hedef (TL)</th><th>Toplanan (TL)</th><th class="text-end">Eylemler</th></tr>
+            </thead>
+            <tbody>
+                {{ range .data.campaigns }}
+                <tr>
+                    <td><strong>#{{ .ID }}</strong></td>
+                    <td>{{ .Title }}</td>
+                    <td>{{ .Goal }}</td>
+                    <td>{{ .Raised }}</td>
+                    <td class="text-end">
+                        <a href="/admin/kampanyalar/duzenle/{{.ID}}" class="btn btn-primary btn-sm"><i class="bi bi-pencil-square"></i> Düzenle</a>
+                        <a href="/admin/kampanyalar/sil/{{.ID}}" class="btn btn-danger btn-sm" onclick="return confirm('Bu kampanyayı silmek istediğinize emin misiniz?')"><i class="bi bi-trash3-fill"></i> Sil</a>
+                    </td>
+                </tr>
+                {{ else }}
+                <tr><td colspan="5" class="text-center text-muted p-4">Gösterilecek kampanya bulunamadı.</td></tr>
+                {{ end }}
+            </tbody>
+        </table>
+    </div>
+</div>
+{{end}}

@@ -358,3 +358,104 @@
 </body>
 </html>
 
+<section class="faq-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Sıkça Sorulan Sorular</h2>
+                <p class="lead text-muted">Aklınıza takılan soruların cevapları.</p>
+            </div>
+        </div>
+
+        <div class="campaign-slider-wrapper">
+            <div class="swiper-clipper">
+                <div class="swiper faq-slider"> <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="faq-card">
+                                <h5 class="faq-question">Nasıl bağış yapabilirim?</h5>
+                                <p class="faq-answer">Web sitemizdeki "Bağış Yap" butonlarını kullanarak online ve güvenli bir şekilde bağış yapabilirsiniz. Ayrıca, banka hesap numaralarımıza EFT/Havale yoluyla da destek olabilirsiniz.</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="faq-card">
+                                <h5 class="faq-question">Bağışlarımın takibini nasıl yapabilirim?</h5>
+                                <p class="faq-answer">Bağışlarınızın ihtiyaç sahiplerine ulaştırılması sürecini sitemizdeki "Projeler" ve "Haberler" bölümlerinden şeffaf bir şekilde takip edebilirsiniz.</p>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="faq-card">
+                                <h5 class="faq-question">Gönüllü olarak nasıl destek olabilirim?</h5>
+                                <p class="faq-answer">"İletişim" sayfamızdaki formu doldurarak veya sosyal medya hesaplarımızdan bize ulaşarak gönüllü ekibimize katılabilirsiniz.</p>
+                            </div>
+                        </div>
+                         <div class="swiper-slide">
+                            <div class="faq-card">
+                                <h5 class="faq-question">Yardımlar sadece yurt dışına mı yapılıyor?</h5>
+                                <p class="faq-answer">Hayır, Khayrat AID olarak hem yurt içinde hem de yurt dışında acil insani yardım, eğitim, sağlık ve kalkınma projeleri yürütmekteyiz.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <div class="text-center mt-5">
+            <a href="#" class="btn btn-outline-secondary">Tüm Soruları Gör</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Kampanya Slider'ı
+    const campaignSwiper = new Swiper('.campaign-slider', {
+        loop: true,
+        spaceBetween: 30,
+        slidesPerView: 1, // Mobil için başlangıç
+        breakpoints: {
+            768: { slidesPerView: 2 }, // Tablet için 2
+            992: { slidesPerView: 3 }  // Masaüstü için 3
+        },
+        navigation: {
+            nextEl: '.campaign-slider-nav .swiper-button-next',
+            prevEl: '.campaign-slider-nav .swiper-button-prev',
+        },
+    });
+
+    // Haberler Slider'ı
+    const newsSwiper = new Swiper('.news-slider', {
+        loop: true,
+        spaceBetween: 30,
+        slidesPerView: 3,
+        pagination: {
+            el: '.news-section .swiper-pagination',
+            clickable: true,
+        },
+    });
+
+    // SSS Slider'ı
+    const faqSwiper = new Swiper('.faq-slider', {
+        loop: true,
+        spaceBetween: 30,
+        slidesPerView: 3,
+        navigation: {
+            nextEl: '.faq-slider-nav .swiper-button-next',
+            prevEl: '.faq-slider-nav .swiper-button-prev',
+        },
+    });
+
+    // Medya Slider'ı
+    const mediaSwiper = new Swiper('.media-slider', {
+        loop: true,
+        spaceBetween: 30,
+        slidesPerView: 3,
+        navigation: {
+            nextEl: '.media-slider-nav .swiper-button-next',
+            prevEl: '.media-slider-nav .swiper-button-prev',
+        },
+    });
+    
+    // Galeri
+    const lightbox = GLightbox({ selector: '.glightbox' });
+</script>

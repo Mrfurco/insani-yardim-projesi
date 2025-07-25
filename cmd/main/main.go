@@ -18,7 +18,7 @@ func main() {
 	router.Static("/static", "./static")
 
 	// Şablonları en basit ve güvenilir şekilde yüklüyoruz.
-	//router.LoadHTMLGlob("templates/*.html")
+	router.LoadHTMLGlob("templates/*.html")
 
 	// --- Public Rotalar ---
 	router.GET("/", handler.ListCampaigns)

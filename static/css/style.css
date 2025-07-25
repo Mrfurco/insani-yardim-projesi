@@ -12,6 +12,13 @@
 body {
     font-family: var(--font-family);
     background-color: var(--khayrat-light-bg);
+    display: flex;
+    flex-direction: column; /* Öğeleri alt alta sırala (header, main, footer) */
+    min-height: 100vh;   /* Body'nin minimum yüksekliği ekranın tamamı olsun */
+}
+
+main {
+    flex: 1; /* Main etiketi, header ve footer arasındaki tüm boşluğu doldursun */
 }
 
 .section-title {
@@ -143,17 +150,67 @@ body {
     /* width: 95%; */
     /* margin: 0 auto; */
 }
+/* Slider'ların okları dışarıda gösterebilmesi için */
+.swiper {
+    overflow: hidden;
+}
+/* ===================================
+   SLIDER OKLARI (YENİ YAPI)
+   =================================== */
 
-/* Başlığın yanındaki ok butonları */
-.campaign-slider-nav .swiper-button-next,
-.campaign-slider-nav .swiper-button-prev {
-    position: static; /* Bu, butonların flexbox içinde düzgün durmasını sağlar */
-    transform: none;
-    margin: 0;
-    width: 44px;
-    height: 44px;
+/* Okların konumlanacağı ana referans noktası */
+.slider-container {
+    padding: 0 50px; /* Okların sığması için sağdan ve soldan boşluk */
 }
 
+.slider-container .swiper-button-next,
+.slider-container .swiper-button-prev {
+    /* Konumlandırma */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%); /* Dikeyde tam ortalama */
+    z-index: 10;
+
+    /* Görünüm (istediğin gibi arka plansız ve büyük) */
+    background: transparent;
+    color: var(--khayrat-dark-text);
+}
+
+/* Okların pozisyonu (kapsayıcının en sağı ve en solu) */
+.slider-container .swiper-button-prev {
+    left: 0;
+}
+.slider-container .swiper-button-next {
+    right: 0;
+}
+
+/* Ok ikonlarının boyutu */
+.slider-container .swiper-button-next::after,
+.slider-container .swiper-button-prev::after {
+    font-size: 2.5rem; /* Daha büyük oklar */
+    font-weight: 900;
+}
+
+/* Üzerine gelince efekt yok, sadece renk değişimi */
+.slider-container .swiper-button-next:hover,
+.slider-container .swiper-button-prev:hover {
+    color: var(--khayrat-lime-green);
+}
+   
+   /* ===================================
+      TÜM SLIDER'LAR İÇİN ORTAK NOKTA (PAGINATION) STİLİ
+      =================================== */
+   .swiper-pagination-bullet {
+       background-color: #ccc;
+       opacity: 1;
+       transition: all 0.2s ease-in-out;
+   }
+   
+   .swiper-pagination-bullet-active {
+       background-color: var(--khayrat-lime-green);
+       transform: scale(1.2);
+   }
+   
 
 /* ===================================
    ÖNE ÇIKAN KAMPANYA
@@ -178,6 +235,11 @@ body {
     border-radius: 0.5rem;
     border-left: 5px solid var(--khayrat-lime-green);
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.news-card-text {
+    flex-grow: 1; /* Bu, metnin kalan tüm boşluğu doldurmasını sağlar, böylece başlıklar ve tarihler aynı hizada kalır */
 }
 .news-card-date {
     font-size: 0.9rem;
@@ -194,6 +256,8 @@ body {
     background-color: var(--khayrat-dark-green) !important;
 }
 
+
+
 /* ===================================
    SSS SLIDER
    =================================== */
@@ -205,6 +269,9 @@ body {
     border-top: 5px solid var(--khayrat-dark-green);
     height: 100%;
     box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,.075);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 .faq-question {
     font-weight: 700;
@@ -219,6 +286,11 @@ body {
     height: 44px;
 }
 
+.faq-answer {
+    /* Bu kural, cevap paragrafının mevcut tüm boşluğu doldurmasını sağlar,
+       böylece tüm kartların alt kısımları aynı hizada olur. */
+    flex-grow: 1;
+}
 /* ===================================
    MEDYA GALERİSİ
    =================================== */
@@ -290,4 +362,45 @@ body {
 .footer-link:hover {
     color: var(--khayrat-lime-green);
     padding-left: 5px;
+}
+
+
+/* --- Admin Paneli Layout Stilleri --- */
+.admin-body {
+    /* Eski body ayarlarını sıfırlıyoruz, artık wrapper yönetecek */
+    display: block;
+    min-height: initial;
+}
+
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh; /* Wrapper tüm ekranı kaplasın */
+}
+
+.admin-sidebar {
+    width: 250px;
+    background-color: #212529; /* Koyu bir sidebar */
+    color: #fff;
+    flex-shrink: 0; /* Sidebar'ın küçülmesini engelle */
+}
+
+.admin-sidebar .nav-link {
+    color: #adb5bd;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-left: 3px solid transparent;
+}
+
+.admin-sidebar .nav-link:hover {
+    background-color: #343a40;
+    color: #fff;
+    border-left: 3px solid var(--khayrat-lime-green);
+}
+
+.admin-main-content {
+    flex-grow: 1; /* Mevcut tüm boşluğu kapla */
+    padding: 2rem;
+    background-color: #f8f9fa;
+    display: flex; /* Footer'ı aşağı itmek için flex yapısı */
+    flex-direction: column; /* İçerik ve footer alt alta */
 }

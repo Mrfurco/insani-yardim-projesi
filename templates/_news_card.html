@@ -1,7 +1,10 @@
 <div class="swiper-slide">
-    <div class="news-card">
+    <div class="card h-100 shadow-sm campaign-card"> <img src="{{ .ImageURL }}" class="card-img-top" alt="{{ .Title }}">
         <div class="news-card-date">{{ .CreatedAt.Format "02-01-2006" }}</div>
-        <h5 class="news-card-title">{{ .Title }}</h5>
-        <p class="news-card-text">{{ .Content }}</p>
+        <div class="card-body d-flex flex-column">
+            <h5 class="card-title">{{ .Title }}</h5>
+            <p class="card-text text-muted small flex-grow-1">{{ .Summary }}</p>
+            <a href="#" class="btn btn-primary btn-custom-lime mt-3">Devamını Oku</a>
+        </div>
     </div>
 </div>
