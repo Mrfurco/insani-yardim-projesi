@@ -1,7 +1,7 @@
 /* ===================================
    GENEL AYARLAR VE RENK PALETİ
    =================================== */
-:root {
+   :root {
     --khayrat-dark-green: #295135;
     --khayrat-lime-green: #80bc00;
     --khayrat-light-bg: #f5f7f2;
@@ -19,6 +19,13 @@ body {
     color: var(--khayrat-dark-green);
 }
 
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
 /* ===================================
    NAVBAR & BUTONLAR
    =================================== */
@@ -34,20 +41,20 @@ body {
 .navbar-nav .nav-link:hover {
     color: var(--khayrat-lime-green);
 }
-.btn-custom-lime {
+.btn-custom-lime, .btn-primary {
     background-color: var(--khayrat-lime-green);
     border-color: var(--khayrat-lime-green);
     color: white;
     font-weight: 500;
 }
-.btn-custom-lime:hover {
+.btn-custom-lime:hover, .btn-primary:hover {
     background-color: #6da300;
     border-color: #6da300;
     color: white;
 }
 
 /* ===================================
-   HERO BÖLÜMÜ (z-index DÜZELTMESİYLE)
+   HERO BÖLÜMÜ
    =================================== */
 .hero-section {
     position: relative;
@@ -64,7 +71,7 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -2; /* Videoyu en arkaya gönderiyoruz */
+    z-index: -2;
 }
 .hero-section::after {
     content: '';
@@ -73,12 +80,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Yazıların okunması için siyah katman */
-    z-index: -1; /* Siyah katmanı videonun bir önüne, ama içeriğin arkasına alıyoruz */
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: -1;
 }
 .hero-content {
-    position: relative; 
-    /* z-index'e gerek yok, çünkü diğer her şey artık negatif z-index'te */
+    position: relative;
 }
 
 /* ===================================
@@ -103,27 +109,16 @@ body {
 }
 
 /* ===================================
-   KAMPANYA SLIDER
+   KAMPANYALAR BÖLÜMÜ (NİHAİ YAPI)
    =================================== */
-.campaign-slider-wrapper {
-    position: relative;
+   .campaigns-section {
+    background-color: var(--khayrat-light-bg);
 }
-.campaign-slider {
-    overflow: visible;
-}
-.campaign-slider-wrapper .swiper-button-next,
-.campaign-slider-wrapper .swiper-button-prev {
-    color: var(--khayrat-dark-green);
-    --swiper-navigation-size: 35px;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-}
-.campaign-slider-wrapper .swiper-button-prev { left: -45px; }
-.campaign-slider-wrapper .swiper-button-next { right: -45px; }
+
 .campaign-card {
     border: none;
     transition: all 0.3s ease-in-out;
+    height: 100%; /* Kartların aynı yükseklikte olmasını sağlar */
 }
 .campaign-card:hover {
     transform: translateY(-5px);
@@ -140,6 +135,25 @@ body {
 .progress-bar {
     background-color: var(--khayrat-lime-green);
 }
+
+/* Kırpma maskesi: Taşmaları gizler ve slider'ı ortalar */
+.swiper-clipper {
+    overflow: hidden;
+    /* İsteğe bağlı: Slider'ı biraz daha daraltmak için */
+    /* width: 95%; */
+    /* margin: 0 auto; */
+}
+
+/* Başlığın yanındaki ok butonları */
+.campaign-slider-nav .swiper-button-next,
+.campaign-slider-nav .swiper-button-prev {
+    position: static; /* Bu, butonların flexbox içinde düzgün durmasını sağlar */
+    transform: none;
+    margin: 0;
+    width: 44px;
+    height: 44px;
+}
+
 
 /* ===================================
    ÖNE ÇIKAN KAMPANYA
@@ -196,16 +210,8 @@ body {
     font-weight: 700;
     color: var(--khayrat-dark-green);
 }
-.section-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
 .faq-slider-nav .swiper-button-next,
-.faq-slider-nav .swiper-button-prev,
-.media-slider-nav .swiper-button-next,
-.media-slider-nav .swiper-button-prev {
+.faq-slider-nav .swiper-button-prev {
     position: static;
     transform: none;
     margin: 0;
@@ -258,6 +264,15 @@ body {
     font-size: 2rem;
     margin-top: 0.5rem;
 }
+.media-slider-nav .swiper-button-next,
+.media-slider-nav .swiper-button-prev {
+    position: static;
+    transform: none;
+    margin: 0;
+    width: 44px;
+    height: 44px;
+}
+
 
 /* ===================================
    FOOTER

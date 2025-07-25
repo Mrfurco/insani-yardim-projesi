@@ -43,20 +43,45 @@
     <!-- KAMPANYALAR (SLIDER) -->
     <section class="campaigns-section py-5">
         <div class="container">
-            <div class="section-header">
-                <div><h2 class="section-title">Öne Çıkan Kampanyalar</h2><p class="lead text-muted mb-0">Sizlerin desteğiyle hayata geçen projelerimiz.</p></div>
-                <div class="campaign-slider-nav"><button type="button" class="btn btn-outline-secondary swiper-button-prev">&lt;</button><button type="button" class="btn btn-outline-secondary swiper-button-next">&gt;</button></div>
-            </div>
-            <div class="swiper campaign-slider">
-                <div class="swiper-wrapper">
-                    {{ range .data.campaigns }}
-                        {{ template "_campaign_card.html" . }}
-                    {{ end }}
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title">Öne Çıkan Kampanyalar</h2>
+                    <p class="lead text-muted">Sizlerin desteğiyle hayata geçen projelerimiz.</p>
                 </div>
             </div>
-        </div>
+        
+            <div class="slider-container position-relative">
+                
+                <div class="swiper campaign-slider">
+                    <div class="swiper-wrapper">
+                        {{ range .data.campaigns }}
+                        <div class="swiper-slide">
+                            <div class="card h-100 shadow-sm campaign-card">
+                                <img src="{{ .ImageURL }}" class="card-img-top" alt="{{ .Title }}">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">{{ .Title }}</h5>
+                                    <div class="progress mt-auto" role="progressbar" aria-valuenow="{{ .Percentage }}" aria-valuemin="0" aria-valuemax="100">
+                                        <div class="progress-bar" style="width: {{ .Percentage }}%">{{ .Percentage }}%</div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <small>Toplanan: {{.Raised}} TL</small>
+                                        <small>Hedef: {{.Goal}} TL</small>
+                                    </div>
+                                    <a href="/kampanya/{{.ID}}" class="btn btn-primary btn-custom-lime mt-3">Detayları İncele</a>
+                                </div>
+                            </div>
+                        </div>
+                        {{ end }}
+                    </div>
+                </div>
+    
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+    
+                <div class="swiper-pagination mt-4 position-relative"></div>
+    
+            </div> </div>
     </section>
-
 
     <!-- İSTATİSTİKLER -->
     <section class="stats-section text-center py-5">
@@ -90,122 +115,103 @@
     <section class="news-section py-5">
         <div class="container">
             <div class="row text-center mb-5"><div class="col-lg-8 mx-auto"><h2 class="section-title">Birlikte Başardıklarımız</h2><p class="lead text-muted">Sizden gelen destekle yeşeren umutların hikayesi.</p></div></div>
-            <div class="swiper news-slider">
-                <div class="swiper-wrapper">
-                    <!-- DEĞİŞİKLİK BURADA BAŞLIYOR -->
-                    {{ if .data.posts }}
-                        <!-- Eğer Go'dan gelen haber listesi doluysa, döngüye gir ve dinamik kartları oluştur -->
+            
+            <div class="slider-container position-relative">
+                <div class="swiper news-slider">
+                    <div class="swiper-wrapper">
+                        
                         {{ range .data.posts }}
                             {{ template "_news_card.html" . }}
                         {{ end }}
-                    {{ else }}
-                        <!-- Eğer Go'dan gelen haber listesi boşsa, bu statik kartları göster -->
-                        <div class="swiper-slide">
-                            <div class="news-card">
-                                <div class="news-card-date">20 Nisan 2025</div>
-                                <h5 class="news-card-title">Ramazan Ayında 10 Ülkede İftar Sofraları Kuruldu</h5>
-                                <p class="news-card-text">Bu mübarek ayda, gönüllülerimiz ve bağışçılarımızın desteğiyle 50.000'den fazla kişiye sıcak iftar yemeği ulaştırdık.</p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="news-card">
-                                <div class="news-card-date">15 Haziran 2025</div>
-                                <h5 class="news-card-title">Somali'de 5 Yeni Su Kuyusu Hizmete Açıldı</h5>
-                                <p class="news-card-text">Kuraklıkla mücadele eden Somali'nin köylerinde, binlerce insanın temiz suya erişimini sağlayan 5 yeni su kuyusunun açılışını gerçekleştirdik.</p>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="news-card">
-                                <div class="news-card-date">5 Temmuz 2025</div>
-                                <h5 class="news-card-title">Kışlık Giyim Yardımları Yola Çıktı</h5>
-                                <p class="news-card-text">Yaklaşan kış öncesinde, yurt içindeki ihtiyaç sahibi aileler ve çocuklar için hazırlanan yardım tırlarımız yola çıktı.</p>
-                            </div>
-                        </div>
-                    {{ end }}
-                    <!-- DEĞİŞİKLİK BURADA BİTİYOR -->
+    
+                    </div>
                 </div>
-                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination mt-4 position-relative"></div>
             </div>
             <div class="text-center mt-5"><a href="#" class="btn btn-outline-secondary">Tüm Haberleri Gör</a></div>
         </div>
     </section>
 
+    <!-- SSS-- (SLIDER) -->
     <section class="faq-section py-5">
         <div class="container">
-            <div class="row text-center mb-5">
-                <div class="col-lg-8 mx-auto">
-                    <h2 class="section-title">Sıkça Sorulan Sorular</h2>
-                    <p class="lead text-muted">Aklınıza takılan soruların cevapları.</p>
-                </div>
-            </div>
-    
-            <div class="campaign-slider-wrapper">
-                <div class="swiper-clipper">
-                    <div class="swiper faq-slider"> <div class="swiper-wrapper">
+            <div class="row text-center mb-5"><div class="col-lg-8 mx-auto"><h2 class="section-title">Sıkça Sorulan Sorular</h2><p class="lead text-muted">Aklınıza takılan soruların cevapları.</p></div></div>
+            
+            <div class="slider-container position-relative">
+                <div class="swiper faq-slider">
+                    <div class="swiper-wrapper">
+                        {{ if .data.faqs }}
+                        {{ range .data.faqs }}
                             <div class="swiper-slide">
-                                <div class="faq-card">
-                                    <h5 class="faq-question">Nasıl bağış yapabilirim?</h5>
-                                    <p class="faq-answer">Web sitemizdeki "Bağış Yap" butonlarını kullanarak online ve güvenli bir şekilde bağış yapabilirsiniz. Ayrıca, banka hesap numaralarımıza EFT/Havale yoluyla da destek olabilirsiniz.</p>
+                               <div class="faq-card">
+                                    <h5 class="faq-question">{{ .Question }}</h5>
+                                    <p class="faq-answer">{{ .Answer }}</p>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
-                                <div class="faq-card">
-                                    <h5 class="faq-question">Bağışlarımın takibini nasıl yapabilirim?</h5>
-                                    <p class="faq-answer">Bağışlarınızın ihtiyaç sahiplerine ulaştırılması sürecini sitemizdeki "Projeler" ve "Haberler" bölümlerinden şeffaf bir şekilde takip edebilirsiniz.</p>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="faq-card">
-                                    <h5 class="faq-question">Gönüllü olarak nasıl destek olabilirim?</h5>
-                                    <p class="faq-answer">"İletişim" sayfamızdaki formu doldurarak veya sosyal medya hesaplarımızdan bize ulaşarak gönüllü ekibimize katılabilirsiniz.</p>
-                                </div>
-                            </div>
-                             <div class="swiper-slide">
-                                <div class="faq-card">
-                                    <h5 class="faq-question">Yardımlar sadece yurt dışına mı yapılıyor?</h5>
-                                    <p class="faq-answer">Hayır, Khayrat AID olarak hem yurt içinde hem de yurt dışında acil insani yardım, eğitim, sağlık ve kalkınma projeleri yürütmekteyiz.</p>
-                                </div>
-                            </div>
+                        {{ end }}
+                    {{ else }}
+                    <div class="swiper-slide">
+                        <div class="faq-card">
+                            <h5 class="faq-question">Nasıl bağış yapabilirim?</h5>
+                            <p class="faq-answer">Web sitemizdeki "Bağış Yap" butonlarını kullanarak online ve güvenli bir şekilde bağış yapabilirsiniz. Ayrıca, banka hesap numaralarımıza EFT/Havale yoluyla da destek olabilirsiniz.</p>
                         </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="faq-card">
+                            <h5 class="faq-question">Bağışlarımın takibini nasıl yapabilirim?</h5>
+                            <p class="faq-answer">Bağışlarınızın ihtiyaç sahiplerine ulaştırılması sürecini sitemizdeki "Projeler" ve "Haberler" bölümlerinden şeffaf bir şekilde takip edebilirsiniz.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="faq-card">
+                            <h5 class="faq-question">Gönüllü olarak nasıl destek olabilirim?</h5>
+                            <p class="faq-answer">"İletişim" sayfamızdaki formu doldurarak veya sosyal medya hesaplarımızdan bize ulaşarak gönüllü ekibimize katılabilirsiniz.</p>
+                        </div>
+                    </div>
+                     <div class="swiper-slide">
+                        <div class="faq-card">
+                            <h5 class="faq-question">Yardımlar sadece yurt dışına mı yapılıyor?</h5>
+                            <p class="faq-answer">Hayır, Khayrat AID olarak hem yurt içinde hem de yurt dışında acil insani yardım, eğitim, sağlık ve kalkınma projeleri yürütmekteyiz.</p>
+                        </div>
+                    </div>
+                    {{ end }}
                     </div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination mt-4 position-relative"></div>
             </div>
-
-            <div class="text-center mt-5">
-                <a href="#" class="btn btn-outline-secondary">Tüm Soruları Gör</a>
-            </div>
+            <div class="text-center mt-5"><a href="#" class="btn btn-outline-secondary">Tüm Soruları Gör</a></div>
         </div>
     </section>
 
     <section class="media-section py-5">
         <div class="container">
-            <div class="section-header">
-                <div>
+            <div class="row text-center mb-5">
+                <div class="col-lg-8 mx-auto">
                     <h2 class="section-title">Faaliyetlerimizden Görüntüler</h2>
                     <p class="lead text-muted">Yardımlarınızın ulaştığı yerlerde yeşeren umut anları.</p>
                 </div>
             </div>
-
-            <div class="swiper-clipper">
+            
+            <div class="slider-container position-relative">
                 <div class="swiper media-slider">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="https://images.pexels.com/photos/6647037/pexels-photo-6647037.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="gallery-item glightbox" data-gallery="khayrat-gallery">
                                 <img src="https://images.pexels.com/photos/6647037/pexels-photo-6647037.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1" alt="Gıda Yardımı" class="img-fluid">
                                 <div class="gallery-overlay">
-                                    <h5 class="gallery-title">Gıda Paketi Dağıtımı</h5>
-                                    <i class="bi bi-zoom-in"></i>
+                                    <h5 class="gallery-title">Gıda Paketi Dağıtımı</h5><i class="bi bi-zoom-in"></i>
                                 </div>
                             </a>
                         </div>
                         <div class="swiper-slide">
-                             <a href="https://images.pexels.com/photos/1153976/pexels-photo-1153976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="gallery-item glightbox" data-gallery="khayrat-gallery">
+                            <a href="https://images.pexels.com/photos/1153976/pexels-photo-1153976.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="gallery-item glightbox" data-gallery="khayrat-gallery">
                                 <img src="https://images.pexels.com/photos/1153976/pexels-photo-1153976.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1" alt="Eğitim Yardımı" class="img-fluid">
                                 <div class="gallery-overlay">
-                                    <h5 class="gallery-title">Eğitim Desteği</h5>
-                                    <i class="bi bi-zoom-in"></i>
+                                    <h5 class="gallery-title">Eğitim Desteği</h5><i class="bi bi-zoom-in"></i>
                                 </div>
                             </a>
                         </div>
@@ -213,32 +219,27 @@
                             <a href="https://vimeo.com/115041822" class="gallery-item glightbox" data-gallery="khayrat-gallery">
                                 <img src="https://images.pexels.com/photos/2519392/pexels-photo-2519392.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1" alt="Su Kuyusu Videosu" class="img-fluid">
                                 <div class="gallery-overlay">
-                                    <h5 class="gallery-title">Afrika Su Kuyusu</h5>
-                                    <i class="bi bi-play-circle-fill"></i>
+                                    <h5 class="gallery-title">Afrika Su Kuyusu</h5><i class="bi bi-play-circle-fill"></i>
                                 </div>
                             </a>
                         </div>
-                         <div class="swiper-slide">
+                        <div class="swiper-slide">
                             <a href="https://images.pexels.com/photos/8947622/pexels-photo-8947622.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="gallery-item glightbox" data-gallery="khayrat-gallery">
                                 <img src="https://images.pexels.com/photos/8947622/pexels-photo-8947622.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=1" alt="Kurban Yardımı" class="img-fluid">
                                 <div class="gallery-overlay">
-                                    <h5 class="gallery-title">Kurban Bayramı</h5>
-                                    <i class="bi bi-zoom-in"></i>
+                                    <h5 class="gallery-title">Kurban Bayramı</h5><i class="bi bi-zoom-in"></i>
                                 </div>
                             </a>
                         </div>
                     </div>
                 </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination mt-4 position-relative"></div>
             </div>
-
-            <div class="text-center mt-5">
-                <a href="#" class="btn btn-outline-secondary">Tüm Galeriyi Gör</a>
-            </div>
+            <div class="text-center mt-5"><a href="#" class="btn btn-outline-secondary">Tüm Galeriyi Gör</a></div>
         </div>
     </section>
-
-    <!-- Diğer tüm section'lar (Öne Çıkan, Haberler, SSS, Medya) buraya gelecek... -->
-    <!-- Şimdilik bu kadar yeterli, diğerlerini daha sonra ekleyeceğiz. -->
 
     {{template "footer.html" .}}
 
@@ -247,66 +248,74 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script>
+        // Galeri (Lightbox)
+        const lightbox = GLightbox({ selector: '.glightbox' });
+    
+        // Kampanya Slider'ı
         const campaignSwiper = new Swiper('.campaign-slider', {
             loop: true,
             spaceBetween: 30,
-            slidesPerView: 3,
+            slidesPerView: 1,
+            breakpoints: { 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 } },
             navigation: {
-                nextEl: '.campaign-slider-nav .swiper-button-next',
-                prevEl: '.campaign-slider-nav .swiper-button-prev',
+                nextEl: '.campaigns-section .swiper-button-next',
+                prevEl: '.campaigns-section .swiper-button-prev',
+            },
+            pagination: {
+                el: '.campaigns-section .swiper-pagination',
+                clickable: true,
             },
         });
-
-        // YENİ EKLENEN: Haberler Slider'ı
+    
+        // Haberler Slider'ı
         const newsSwiper = new Swiper('.news-slider', {
             loop: true,
             spaceBetween: 30,
             slidesPerView: 1,
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                992: { slidesPerView: 3 }
+            breakpoints: { 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 } },
+            navigation: {
+                nextEl: '.news-section .swiper-button-next',
+                prevEl: '.news-section .swiper-button-prev',
             },
-            // İlerleme çubuğu gibi görünen pagination
             pagination: {
-                el: '.swiper-pagination',
+                el: '.news-section .swiper-pagination',
                 clickable: true,
             },
         });
-
-        // YENİ EKLENEN: SSS Slider'ı
+    
+        // SSS Slider'ı
         const faqSwiper = new Swiper('.faq-slider', {
             loop: true,
             spaceBetween: 30,
             slidesPerView: 1,
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                992: { slidesPerView: 3 }
-            },
+            breakpoints: { 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 } },
             navigation: {
-                nextEl: '.faq-slider-nav .swiper-button-next',
-                prevEl: '.faq-slider-nav .swiper-button-prev',
+                nextEl: '.faq-section .swiper-button-next',
+                prevEl: '.faq-section .swiper-button-prev',
+            },
+            pagination: {
+                el: '.faq-section .swiper-pagination',
+                clickable: true,
             },
         });
-
-        const lightbox = GLightbox({
-            selector: '.glightbox'
-        });
-
-        // YENİ EKLENEN: Medya Slider'ı
+    
+        // Medya Slider'ı (onun da yapısı artık aynı olduğu için onu da ekleyelim)
         const mediaSwiper = new Swiper('.media-slider', {
             loop: true,
             spaceBetween: 30,
             slidesPerView: 1,
-            breakpoints: {
-                768: { slidesPerView: 2 },
-                992: { slidesPerView: 3 }
-            },
+            breakpoints: { 768: { slidesPerView: 2 }, 992: { slidesPerView: 3 } },
             navigation: {
-                nextEl: '.media-slider-nav .swiper-button-next',
-                prevEl: '.media-slider-nav .swiper-button-prev',
+                nextEl: '.media-section .swiper-button-next',
+                prevEl: '.media-section .swiper-button-prev',
+            },
+            pagination: {
+                el: '.media-section .swiper-pagination',
+                clickable: true,
             },
         });
     </script>
+    
     
 </body>
 </html>

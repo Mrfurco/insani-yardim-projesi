@@ -15,10 +15,10 @@ func main() {
 	seedDatabase(repository.DB)
 
 	router := gin.Default()
-	//router.Static("/static", "./static")
+	router.Static("/static", "./static")
 
 	// Şablonları en basit ve güvenilir şekilde yüklüyoruz.
-	router.LoadHTMLGlob("templates/*")
+	//router.LoadHTMLGlob("templates/*.html")
 
 	// --- Public Rotalar ---
 	router.GET("/", handler.ListCampaigns)
@@ -33,6 +33,7 @@ func main() {
 	adminGroup.GET("/dashboard", handler.ShowAdminDashboard)
 	adminGroup.GET("/kampanyalar/yeni", handler.ShowNewCampaignForm)
 	adminGroup.POST("/kampanyalar", handler.CreateCampaign)
+	adminGroup.GET("/kampanyalar", handler.ListCampaignsAdmin)
 	adminGroup.GET("/kampanyalar/sil/:id", handler.DeleteCampaign)
 	adminGroup.GET("/kampanyalar/duzenle/:id", handler.ShowEditCampaignForm)
 	adminGroup.POST("/kampanyalar/duzenle/:id", handler.UpdateCampaign)
@@ -40,6 +41,9 @@ func main() {
 	adminGroup.GET("/haberler", handler.ListPosts)
 	adminGroup.GET("/haberler/yeni", handler.ShowNewPostForm)
 	adminGroup.POST("/haberler", handler.CreatePost)
+	adminGroup.GET("/haberler/duzenle/:id", handler.ShowEditPostForm)
+	adminGroup.POST("/haberler/duzenle/:id", handler.UpdatePost)
+	adminGroup.GET("/haberler/sil/:id", handler.DeletePost)
 
 	router.Run()
 }
@@ -54,22 +58,32 @@ func seedDatabase(db *gorm.DB) {
 
 		campaigns := []model.Campaign{
 			{
+				Title:       "Bu Kış Kimse Üşümesin",
+				Description: `Yurt içinde ve yurt dışında, kışın ağır koşullarında yaşam mücadelesi veren birçok aile, soğuktan korunmakta zorluk çekiyor...`,
+				ImageURL:    "https://images.pexels.com/photos/14028471/pexels-photo-14028471.jpeg?auto=compress&cs=tinysrgb&w=600",
+				Goal:        250000,
+				Raised:      175000,
+			},
+			{
 				Title:       "Filistin İçin Acil Yardım",
-				Description: `Filistin'in 7 Ekim'de işgalci İsrail'e karşı başlattığı "Aksa Tufanı" özgürlük mücadelesi devam ediyor. İsrail su ve elektrik hatlarını kestiği Filistin'de şu ana kadar bin tondan fazla bomba kullandığını açıkladı. Tüm bu saldırılar sonucunda hastane, cami ve okulların da bulunduğu birçok yerleşim yeri ağır hasar aldı. Gazze'ye düzenlenen bu saldırıların ardından yapılan son açıklamalara göre 17 binden den fazlası çocuk olmak üzere 50 binden fazla Filistinli vefat ederken 113 binden fazla kişinin yaralandığı belirtildi.`,
+				Description: `Gazze'de yaşanan insanlık dramına sessiz kalmayın. Acil gıda, su ve tıbbi malzeme yardımlarınızla bir hayata umut olabilirsiniz.`,
+				ImageURL:    "https://images.pexels.com/photos/18451314/pexels-photo-18451314.jpeg?auto=compress&cs=tinysrgb&w=600",
 				Goal:        500000,
 				Raised:      95000,
 			},
 			{
 				Title:       "Bir Burs Bir Gelecek",
-				Description: `Geleceğimizi güvence altına almanın en güzel yolu eğitimdir. Hayrat Yardım olarak, ülkemizdeki öğrencilerin eğitim hayatlarına devam edebilmeleri için "Bir Burs Bir Gelecek" kampanyasını başlattık. Bağışlarınızla bir öğrencinin eğitim masraflarına ortak olabilir, onun geleceğine ışık tutabilirsiniz.`,
+				Description: `Geleceğimizin güvence altına almanın en güzel yolu eğitimdir. Öğrencilerimizin eğitim hayatlarına devam edebilmeleri için burs desteği sağlıyoruz.`,
+				ImageURL:    "https://images.pexels.com/photos/267885/pexels-photo-267885.jpeg?auto=compress&cs=tinysrgb&w=600",
 				Goal:        100000,
 				Raised:      85000,
 			},
 			{
-				Title:       "Bu Kış Kimse Üşümesin",
-				Description: `Yurt içinde ve yurt dışında, kışın ağır koşullarında yaşam mücadelesi veren birçok aile, soğuktan korunmakta zorluk çekiyor. Özellikle çocuklar, koruyucu kıyafet eksikliği nedeniyle zarar görüyor. Dağıttığımız kışlık kıyafet setleri, mont, çizme, kazak, pantolon ve çanta içererek çocuklara umut oluyor. Bağışlarınızla, bu kış da iyilik rüzgarlarını estirerek onların sıcacık gülümsemelerini sağlıyoruz. Bir adet kışlık set bedeli: ₺1.400`,
-				Goal:        250000,
-				Raised:      175000,
+				Title:       "Temiz Su Hayattır",
+				Description: `Afrika'da suya erişimi olmayan köylerde su kuyuları açarak binlerce insana temiz su ve sağlıklı bir yaşam sunuyoruz.`,
+				ImageURL:    "https://images.pexels.com/photos/6646905/pexels-photo-6646905.jpeg?auto=compress&cs=tinysrgb&w=600",
+				Goal:        100000,
+				Raised:      60000,
 			},
 		}
 		db.Create(&campaigns)
@@ -85,7 +99,6 @@ func seedDatabase(db *gorm.DB) {
 			{Question: "Yardımlar sadece yurt dışına mı yapılıyor?", Answer: "Hayır, Khayrat AID olarak hem yurt içinde hem de yurt dışında acil insani yardım, eğitim, sağlık ve kalkınma projeleri yürütmekteyiz."},
 		}
 		db.Create(&faqs)
-	
+
 	}
 }
-	

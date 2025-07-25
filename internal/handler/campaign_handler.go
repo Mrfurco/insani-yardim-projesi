@@ -9,20 +9,21 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// --- PUBLIC HANDLERS ---
-
 // ListCampaigns, ana sayfa için gerekli tüm verileri çeker ve gönderir.
 func ListCampaigns(c *gin.Context) {
 	// Kampanyaları çekiyoruz
 	var campaigns []model.Campaign
 	repository.DB.Order("id asc").Find(&campaigns)
 
-	// Kampanyalar için View Model oluşturuyoruz (Yüzde hesabı için)
+	// Kampanyalar için View Model'i fonksiyonun İÇİNDE tanımlıyoruz
 	type CampaignView struct {
 		ID, Goal, Raised, Percentage int
-		Title                        string
+		Title, Description, ImageURL string
 	}
+
+	// Değişkeni de fonksiyonun İÇİNDE tanımlıyoruz
 	var campaignViews []CampaignView
+
 	for _, campaign := range campaigns {
 		percentage := 0
 		if campaign.Goal > 0 {
@@ -32,43 +33,55 @@ func ListCampaigns(c *gin.Context) {
 			percentage = 100
 		}
 		campaignViews = append(campaignViews, CampaignView{
-			ID: campaign.ID, Title: campaign.Title, Goal: campaign.Goal, Raised: campaign.Raised, Percentage: percentage,
+			ID:          campaign.ID,
+			Title:       campaign.Title,
+			Description: campaign.Description,
+			ImageURL:    campaign.ImageURL,
+			Goal:        campaign.Goal,
+			Raised:      campaign.Raised,
+			Percentage:  percentage,
 		})
 	}
+
+	// Haberleri ve SSS'leri de çekiyoruz
+	var posts []model.Post
+	repository.DB.Order("id desc").Limit(5).Find(&posts)
+	var faqs []model.FAQ
+	repository.DB.Order("id asc").Find(&faqs)
 
 	// Tüm verileri tek bir map içinde HTML'e gönderiyoruz
 	c.HTML(http.StatusOK, "index.html", gin.H{
 		"title": "Ana Sayfa",
 		"data": gin.H{
 			"campaigns": campaignViews,
-			// Diğer bölümleri eklediğimizde buraya "posts", "faqs" gibi veriler de gelecek
+			"posts":     posts,
+			"faqs":      faqs,
 		},
 	})
-}
+} // <-- ListCampaigns fonksiyonu burada bitiyor, fazladan parantez yok.
 
+// ... (Diğer handler fonksiyonları: ShowCampaign, CreateCampaign vb. aynı kalabilir) ...
 func ShowCampaign(c *gin.Context) {
-	id := c.Param("id")
-	var campaign model.Campaign
-	if err := repository.DB.First(&campaign, id).Error; err != nil {
-		c.String(http.StatusNotFound, "Aradığınız kampanya bulunamadı.")
-		return
-	}
+    id := c.Param("id")
+    var campaign model.Campaign
+    if err := repository.DB.First(&campaign, id).Error; err != nil {
+        c.String(http.StatusNotFound, "Aradığınız kampanya bulunamadı.")
+        return
+    }
 
-	percentage := 0
-	if campaign.Goal > 0 {
-		percentage = (campaign.Raised * 100) / campaign.Goal
-	}
-	if percentage > 100 {
-		percentage = 100
-	}
+    percentage := 0
+    if campaign.Goal > 0 {
+        percentage = (campaign.Raised * 100) / campaign.Goal
+    }
+    if percentage > 100 {
+        percentage = 100
+    }
 
-	c.HTML(http.StatusOK, "campaign_detail.html", gin.H{
-		"title": campaign.Title,
-		"data":  gin.H{"ID": campaign.ID, "Title": campaign.Title, "Description": campaign.Description, "Goal": campaign.Goal, "Raised": campaign.Raised, "Percentage": percentage},
-	})
+    c.HTML(http.StatusOK, "campaign_detail.html", gin.H{
+        "title": campaign.Title,
+        "data":  gin.H{"ID": campaign.ID, "Title": campaign.Title, "Description": campaign.Description, "ImageURL": campaign.ImageURL, "Goal": campaign.Goal, "Raised": campaign.Raised, "Percentage": percentage},
+    })
 }
-
-// --- ADMIN HANDLERS ---
 
 func ShowAdminDashboard(c *gin.Context) {
 	var campaigns []model.Campaign
@@ -87,9 +100,11 @@ func ShowNewCampaignForm(c *gin.Context) {
 
 func CreateCampaign(c *gin.Context) {
 	title := c.PostForm("title")
+	description := c.PostForm("description")
+	imageURL := c.PostForm("image_url")
 	goal, _ := strconv.Atoi(c.PostForm("goal"))
-	// Not: Henüz formda description alanı yok, bir sonraki adımda ekleyeceğiz.
-	campaign := model.Campaign{Title: title, Goal: goal, Raised: 0}
+	
+	campaign := model.Campaign{Title: title, Description: description, ImageURL: imageURL, Goal: goal, Raised: 0}
 	repository.DB.Create(&campaign)
 	c.Redirect(http.StatusFound, "/admin/dashboard")
 }
@@ -115,9 +130,10 @@ func UpdateCampaign(c *gin.Context) {
 		return
 	}
 	campaign.Title = c.PostForm("title")
+	campaign.Description = c.PostForm("description")
+	campaign.ImageURL = c.PostForm("image_url")
 	campaign.Goal, _ = strconv.Atoi(c.PostForm("goal"))
 	campaign.Raised, _ = strconv.Atoi(c.PostForm("raised"))
-	// Not: Henüz formda description alanı yok, bir sonraki adımda ekleyeceğiz.
 	repository.DB.Save(&campaign)
 	c.Redirect(http.StatusFound, "/admin/dashboard")
 }

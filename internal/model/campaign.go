@@ -4,7 +4,8 @@ package model
 type Campaign struct {
 	ID          int
 	Title       string
-	Description string `gorm:"type:text"` // YENİ EKLENEN ALAN
+	Description string `gorm:"type:text"` 
+	ImageURL    string
 	Goal        int    // Hedeflenen miktar
 	Raised      int    // Toplanan miktar
 }

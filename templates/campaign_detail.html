@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <title>{{.data.Title}} | Khayrat AID</title>
+</head>
+<body>
+
+    {{template "navbar.html" .}}
+
+    <main class="container my-5">
+        <div class="row g-5">
+            <div class="col-md-8">
+                <article>
+                    <img src="{{.data.ImageURL}}" class="img-fluid rounded mb-4" alt="{{.data.Title}}">
+
+                    <h2 class="blog-post-title mb-3">{{.data.Title}}</h2>
+                    <hr>
+
+                    <p class="lead" style="white-space: pre-wrap;">{{.data.Description}}</p>
+                </article>
+            </div>
+
+            <div class="col-md-4">
+                <div class="position-sticky" style="top: 2rem;">
+                    <div class="p-4 mb-3 bg-light rounded shadow-sm">
+                        <h4 class="fst-italic">Kampanya Künyesi</h4>
+                        
+                        <div class="progress mt-3" role="progressbar" style="height: 25px;">
+                            <div class="progress-bar" style="width: {{.data.Percentage}}%">{{.data.Percentage}}%</div>
+                        </div>
+                        
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <span class="text-muted">Toplanan: {{.data.Raised}} TL</span>
+                            <span class="text-muted">Hedef: {{.data.Goal}} TL</span>
+                        </div>
+                        
+                        <div class="d-grid mt-4">
+                            <a href="#" class="btn btn-lg btn-primary btn-custom-lime">Hemen Bağış Yap</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    {{template "footer.html" .}}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
