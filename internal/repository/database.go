@@ -25,10 +25,12 @@ func ConnectDatabase() {
 
 	// Otomatik olarak 'campaigns' tablosunu oluşturur (eğer yoksa).
 	// Bu, model.Campaign yapısına bakarak tabloyu oluşturur.
-	err = database.AutoMigrate(&model.Campaign{}, &model.Post{}, &model.FAQ{})
+	err = database.AutoMigrate(&model.Campaign{}, &model.Post{}, &model.FAQ{}, &model.Message{}, &model.Donation{})
 	if err != nil {
 		log.Fatal("Tablo oluşturulamadı!", err)
 	}
+
+	
 
 	fmt.Println("Veritabanı tablosu başarıyla oluşturuldu/güncellendi.")
 	DB = database

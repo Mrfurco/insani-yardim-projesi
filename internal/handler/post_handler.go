@@ -133,3 +133,20 @@ func ShowNewsPage(c *gin.Context) {
 		"data":  gin.H{"posts": posts},
 	})
 }
+
+// ShowPostPage, tek bir haberin detay sayfasını oluşturur.
+func ShowPostPage(c *gin.Context) {
+	id := c.Param("id")
+	var post model.Post
+	if err := repository.DB.First(&post, id).Error; err != nil {
+		// Eğer o ID'de bir haber bulunamazsa, 404 hatası ver.
+		c.String(http.StatusNotFound, "Aradığınız haber bulunamadı.")
+		return
+	}
+
+	// haberi_detay.html şablonunu render et ve post verisini gönder.
+	c.HTML(http.StatusOK, "haber_detay.html", gin.H{
+		"title": post.Title,
+		"data":  post,
+	})
+}

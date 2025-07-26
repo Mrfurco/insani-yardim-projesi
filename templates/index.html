@@ -472,9 +472,48 @@ donationItems.forEach(item => {
         updateChildImage();
     });
 });
-
 // Sayfa ilk yüklendiğinde doğru resmin göründüğünden emin ol
 updateChildImage();
+
+// Sepete Ekle Butonuna İşlevsellik Kazandırma (YENİ VERSİYON)
+const addToCartButton = document.querySelector('.donation-summary .btn');
+const donationForm = document.createElement('form');
+donationForm.method = 'POST';
+donationForm.action = '/sepet/ekle';
+donationForm.style.display = 'none';
+document.body.appendChild(donationForm);
+
+addToCartButton.addEventListener('click', () => {
+    if (totalAmount === 0) {
+        alert("Lütfen en az bir yardım kalemi seçin.");
+        return;
+    }
+
+    // Formu temizle ve yeni verilerle doldur
+    donationForm.innerHTML = ''; 
+    
+    // Gizli input'lar oluştur
+    const campaignIdInput = document.createElement('input');
+    campaignIdInput.type = 'hidden';
+    campaignIdInput.name = 'campaignId';
+    campaignIdInput.value = '1'; // "Bu Kış Kimse Üşümesin" kampanyasının ID'si (varsayım)
+
+    const itemNameInput = document.createElement('input');
+    itemNameInput.type = 'hidden';
+    itemNameInput.name = 'itemName';
+    itemNameInput.value = 'Kışlık Yardım Paketi';
+
+    const amountInput = document.createElement('input');
+    amountInput.type = 'hidden';
+    amountInput.name = 'amount';
+    amountInput.value = totalAmount;
+
+    // Input'ları forma ekle ve formu gönder
+    donationForm.appendChild(campaignIdInput);
+    donationForm.appendChild(itemNameInput);
+    donationForm.appendChild(amountInput);
+    donationForm.submit();
+});
     </script>
     
     

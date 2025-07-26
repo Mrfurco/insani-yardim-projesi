@@ -17,40 +17,42 @@
     {{template "navbar.html" .}}
 
     <main class="container my-5">
-        <div class="row g-5">
-            <div class="col-md-8">
-                <article>
-                    <img src="{{.data.ImageURL}}" class="img-fluid rounded mb-4" alt="{{.data.Title}}">
-
-                    <h2 class="blog-post-title mb-3">{{.data.Title}}</h2>
-                    <hr>
-
-                    <p class="lead" style="white-space: pre-wrap;">{{.data.Description}}</p>
-                </article>
+    <div class="row">
+        <div class="col-lg-7">
+            <img src="{{ .data.ImageURL }}" class="img-fluid rounded shadow-sm mb-4" alt="{{ .data.Title }}">
+            <h1 class="section-title mb-3">{{ .data.Title }}</h1>
+            <div class="post-content">
+                <p>{{ .data.Description }}</p>
             </div>
-
-            <div class="col-md-4">
-                <div class="position-sticky" style="top: 2rem;">
-                    <div class="p-4 mb-3 bg-light rounded shadow-sm">
-                        <h4 class="fst-italic">Kampanya Künyesi</h4>
-                        
-                        <div class="progress mt-3" role="progressbar" style="height: 25px;">
-                            <div class="progress-bar" style="width: {{.data.Percentage}}%">{{.data.Percentage}}%</div>
-                        </div>
-                        
-                        <div class="d-flex justify-content-between align-items-center mt-2">
-                            <span class="text-muted">Toplanan: {{.data.Raised}} TL</span>
-                            <span class="text-muted">Hedef: {{.data.Goal}} TL</span>
-                        </div>
-                        
-                        <div class="d-grid mt-4">
-                            <a href="#" class="btn btn-lg btn-primary btn-custom-lime">Hemen Bağış Yap</a>
-                        </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card shadow-sm sticky-top" style="top: 100px;">
+                <div class="card-body">
+                    <h5 class="card-title">Bu Kampanyaya Destek Olun</h5>
+                    <div class="progress my-3" role="progressbar">
+                        <div class="progress-bar" style="width: {{ .data.Percentage }}%">{{ .data.Percentage }}%</div>
                     </div>
+                    <div class="d-flex justify-content-between">
+                        <small>Toplanan: {{.data.Raised}} TL</small>
+                        <small>Hedef: {{.data.Goal}} TL</small>
+                    </div>
+                    <hr>
+                    <form action="/sepet/ekle" method="POST">
+                        <input type="hidden" name="campaignId" value="{{ .data.ID }}">
+                        <input type="hidden" name="itemName" value="{{ .data.Title }}">
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Bağış Miktarı (TL)</label>
+                            <input type="number" class="form-control" name="amount" id="amount" placeholder="Örn: 100" required>
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">Sepete Ekle</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
     {{template "footer.html" .}}
 

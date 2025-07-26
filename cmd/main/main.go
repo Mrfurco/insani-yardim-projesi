@@ -1,6 +1,7 @@
 package main
 
 import (
+	"html/template"
 	"log"
 
 	"github.com/MrFurco/insani-yardim-projesi/internal/handler"
@@ -9,12 +10,20 @@ import (
 	"github.com/gin-gonic/gin"
 	"gorm.io/gorm"
 )
+// Şablon içinde toplama işlemi yapabilmek için kendi fonksiyonumuzu yazıyoruz
+func add(a, b int) int {
+	return a + b
+}
 
 func main() {
 	repository.ConnectDatabase()
 	seedDatabase(repository.DB)
 
 	router := gin.Default()
+
+	router.SetFuncMap(template.FuncMap{
+		"add": add,
+	})
 	router.Static("/static", "./static")
 
 	// Şablonları en basit ve güvenilir şekilde yüklüyoruz.
@@ -29,12 +38,25 @@ func main() {
 	router.GET("/medya", handler.ShowMediaPage)
 	router.GET("/hakkimizda", handler.ShowAboutPage)
 	router.GET("/iletisim", handler.ShowContactPage)
+	router.POST("/iletisim", handler.HandleContactForm)
+	router.GET("/haber/:id", handler.ShowPostPage)
+	router.POST("/sepet/ekle", handler.AddToCart)
+	router.GET("/sepet", handler.ShowCartPage)
+	router.GET("/odeme", handler.ShowCheckoutPage)
+
+	// Ödeme formundan gelen veriyi işleyecek rota
+	router.POST("/odeme", handler.ProcessDonation)
+	// Teşekkür sayfası rotası
+	router.GET("/tesekkurler", handler.ShowThankYouPage)
 
 	// --- Admin Grubu ve Rotaları ---
 	adminGroup := router.Group("/admin")
 	adminGroup.Use(gin.BasicAuth(gin.Accounts{
 		"admin": "12345",
 	}))
+
+	// YENİ MESAJLAR ROTASI
+	adminGroup.GET("/mesajlar", handler.ListMessages)
 	// Kampanya Yönetimi
 	adminGroup.GET("/dashboard", handler.ShowAdminDashboard)
 	adminGroup.GET("/kampanyalar/yeni", handler.ShowNewCampaignForm)

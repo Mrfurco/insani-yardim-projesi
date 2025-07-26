@@ -13,6 +13,11 @@
     {{template "navbar.html" .}}
 
     <main class="container my-5">
+        {{ if eq .status "success" }}
+        <div class="alert alert-success">Mesajınız başarıyla gönderildi! Size en kısa sürede geri dönüş yapacağız.</div>
+        {{ else if eq .status "error" }}
+        <div class="alert alert-danger">Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.</div>
+        {{ end }}
         <div class="row text-center mb-5">
             <div class="col-lg-8 mx-auto">
                 <h1 class="section-title">İletişim</h1>
@@ -47,23 +52,23 @@
             </div>
             <div class="col-lg-7">
                 <h4 class="mb-4">Mesaj Gönderin</h4>
-                <form action="#" method="POST">
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <input type="text" class="form-control" placeholder="Adınız Soyadınız" required>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <input type="email" class="form-control" placeholder="E-posta Adresiniz" required>
-                        </div>
-                    </div>
-                    <div class="mb-3">
-                        <input type="text" class="form-control" placeholder="Konu" required>
-                    </div>
-                    <div class="mb-3">
-                        <textarea class="form-control" rows="5" placeholder="Mesajınız" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Gönder</button>
-                </form>
+                <form action="/iletisim" method="POST">
+    <div class="row">
+        <div class="col-md-6 mb-3">
+            <input type="text" name="name" class="form-control" placeholder="Adınız Soyadınız" required>
+        </div>
+        <div class="col-md-6 mb-3">
+            <input type="email" name="email" class="form-control" placeholder="E-posta Adresiniz" required>
+        </div>
+    </div>
+    <div class="mb-3">
+        <input type="text" name="subject" class="form-control" placeholder="Konu" required>
+    </div>
+    <div class="mb-3">
+        <textarea name="message" class="form-control" rows="5" placeholder="Mesajınız" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Gönder</button>
+</form>
             </div>
         </div>
     </main>

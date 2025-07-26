@@ -296,7 +296,59 @@ func ShowAboutPage(c *gin.Context) {
 
 // ShowContactPage, "İletişim" sayfasını oluşturur.
 func ShowContactPage(c *gin.Context) {
+    // URL'den 'status' parametresini oku (ör: /iletisim?status=success)
+	status := c.Query("status")
+
 	c.HTML(http.StatusOK, "iletisim.html", gin.H{
 		"title": "İletişim",
+        "status": status, // status'ü HTML'e gönder
 	})
+}
+
+func HandleContactForm(c *gin.Context) {
+	// Formdan verileri al
+	name := c.PostForm("name")
+	email := c.PostForm("email")
+	subject := c.PostForm("subject")
+	messageText := c.PostForm("message")
+
+	// Yeni bir Message objesi oluştur
+	message := model.Message{
+		Name:    name,
+		Email:   email,
+		Subject: subject,
+		Message: messageText,
+	}
+
+	// Veritabanına kaydet
+	if err := repository.DB.Create(&message).Error; err != nil {
+		// Hata olursa, hata mesajı ile geri yönlendir (şimdilik basit tutalım)
+		c.Redirect(http.StatusFound, "/iletisim?status=error")
+		return
+	}
+
+	// Başarılı olursa, başarı mesajı ile geri yönlendir
+	c.Redirect(http.StatusFound, "/iletisim?status=success")
+}
+
+func ListMessages(c *gin.Context) {
+	var messages []model.Message
+	// En son gelen mesaj en üstte görünsün diye id'ye göre tersten sıralıyoruz.
+	repository.DB.Order("id desc").Find(&messages)
+
+	// Manuel template render etme yöntemimizi kullanıyoruz.
+	tmpl, err := template.ParseFiles("templates/admin_layout.html", "templates/admin_list_messages.html")
+	if err != nil {
+		c.String(http.StatusInternalServerError, "Template parse error: %v", err)
+		return
+	}
+
+	err = tmpl.ExecuteTemplate(c.Writer, "layout", gin.H{
+		"title": "Gelen Mesajlar",
+		"data":  gin.H{"messages": messages},
+	})
+	if err != nil {
+		c.String(http.StatusInternalServerError, "Template execute error: %v", err)
+		return
+	}
 }

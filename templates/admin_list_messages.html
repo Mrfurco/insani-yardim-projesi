@@ -1,0 +1,62 @@
+{{define "content"}}
+<h1 class="h2 mb-4">Gelen Mesajlar</h1>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Gönderen</th>
+                        <th>E-posta</th>
+                        <th>Konu</th>
+                        <th>Tarih</th>
+                        <th class="text-end">İşlem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{ range .data.messages }}
+                    <tr>
+                        <td><strong>#{{ .ID }}</strong></td>
+                        <td>{{ .Name }}</td>
+                        <td>{{ .Email }}</td>
+                        <td>{{ .Subject }}</td>
+                        <td>{{ .CreatedAt.Format "02-01-2006 15:04" }}</td>
+                        <td class="text-end">
+                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#messageModal-{{.ID}}">
+                                <i class="bi bi-eye-fill"></i> Oku
+                            </button>
+                        </td>
+                    </tr>
+
+                    <div class="modal fade" id="messageModal-{{.ID}}" tabindex="-1">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Konu: {{ .Subject }}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><strong>Gönderen:</strong> {{ .Name }} ({{ .Email }})</p>
+                                    <p><strong>Tarih:</strong> {{ .CreatedAt.Format "02 January 2006, 15:04" }}</p>
+                                    <hr>
+                                    <p style="white-space: pre-wrap;">{{ .Message }}</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{ else }}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted p-4">Gelen mesaj kutunuz boş.</td>
+                    </tr>
+                    {{ end }}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{{end}}
