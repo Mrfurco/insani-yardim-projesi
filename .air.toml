@@ -1,0 +1,23 @@
+# .air.toml
+
+# Projenin kök dizini
+root = "."
+# Geçici derleme dosyalarının tutulacağı klasör
+tmp_dir = "tmp"
+
+[build]
+# Projemizi derlemek için kullanılacak komut.
+# Bizim ana dosyamız cmd/main içinde olduğu için yolu doğru belirtiyoruz.
+cmd = "go build -o ./tmp/main.exe ./cmd/main"
+# Çalıştırılacak olan derlenmiş dosyanın yolu
+bin = "tmp/main.exe"
+# İzlenecek dosya türleri. Değişiklik olduğunda yeniden derleme yapar.
+include_ext = ["go", "html", "css"]
+# İzlenmeyecek klasörler.
+# tmp: Derleme dosyalarının olduğu yer.
+# static/uploads: Resim yüklediğimizde sunucunun yeniden başlamasını istemeyiz.
+exclude_dir = ["tmp", "static/uploads"]
+
+[log]
+# Logların renkli görünmesi için
+color = true

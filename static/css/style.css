@@ -404,3 +404,123 @@ main {
     display: flex; /* Footer'ı aşağı itmek için flex yapısı */
     flex-direction: column; /* İçerik ve footer alt alta */
 }
+
+/* ===================================
+     İNTERAKTİF KIŞLIK GİYSİ KAMPANYASI STİLLERİ
+     =================================== */
+.winter-campaign-section {
+    background-color: #ffffff;
+}
+
+.child-image-wrapper {
+    background-color: var(--khayrat-light-bg);
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+#child-image {
+    transition: transform 0.5s ease;
+}
+
+.donation-item {
+    display: flex;
+    align-items: center;
+    background-color: var(--khayrat-light-bg);
+    border: 2px solid transparent;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.donation-item:hover {
+    border-color: #ddd;
+}
+
+.donation-item.selected {
+    border-color: var(--khayrat-lime-green);
+    background-color: #fff;
+    box-shadow: 0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+.item-icon {
+    font-size: 2.5rem;
+    color: var(--khayrat-dark-green);
+    margin-right: 1.5rem;
+}
+
+.item-details {
+    flex-grow: 1;
+}
+
+.item-name {
+    font-weight: 700;
+    color: var(--khayrat-dark-green);
+    margin: 0;
+}
+
+.item-desc {
+    margin: 0;
+    color: #6c757d;
+}
+
+.item-price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--khayrat-dark-green);
+}
+
+.donation-summary {
+    background-color: var(--khayrat-dark-green);
+    color: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+}
+
+.total-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.total-price strong {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--khayrat-lime-green);
+}
+
+/* ===================================
+     CROSS-FADE ANİMASYON STİLLERİ
+     =================================== */
+.child-animation-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 400px; /* Resim alanına minimum bir yükseklik veriyoruz */
+    background-color: var(--khayrat-light-bg);
+    border-radius: 1rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.child-image {
+    /* Tüm resimleri üst üste bindiriyoruz */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Resmin tamamının görünmesini sağlar */
+
+    /* Geçiş efekti */
+    opacity: 0; /* Başlangıçta hepsi görünmez */
+    transition: opacity 0.8s ease-in-out; /* Yumuşak geçiş süresi */
+}
+
+.child-image.active {
+    opacity: 1; /* Sadece 'active' class'ına sahip olan görünür olacak */
+}

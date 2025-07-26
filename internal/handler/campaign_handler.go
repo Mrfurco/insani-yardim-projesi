@@ -257,3 +257,46 @@ func ListCampaignsAdmin(c *gin.Context) {
 		return
 	}
 }
+
+// ShowCampaignsPage, tüm kampanyaları listeleyen sayfayı oluşturur.
+func ShowCampaignsPage(c *gin.Context) {
+	// Buradaki ListCampaigns fonksiyonu ana sayfa için, kafalar karışmasın.
+	// Biz veritabanından yeniden çekelim.
+	var campaigns []model.Campaign
+	repository.DB.Order("id desc").Find(&campaigns)
+
+	c.HTML(http.StatusOK, "kampanyalar.html", gin.H{
+		"title": "Tüm Kampanyalar",
+		"data":  gin.H{"campaigns": campaigns},
+	})
+}
+
+// ShowFaqsPage, tüm SSS'leri listeleyen sayfayı oluşturur.
+func ShowFaqsPage(c *gin.Context) {
+	var faqs []model.FAQ
+	repository.DB.Order("id asc").Find(&faqs)
+	c.HTML(http.StatusOK, "sss.html", gin.H{
+		"title": "Sıkça Sorulan Sorular",
+		"data":  gin.H{"faqs": faqs},
+	})
+}
+
+// ShowMediaPage, medya galerisi sayfasını oluşturur.
+func ShowMediaPage(c *gin.Context) {
+	c.HTML(http.StatusOK, "medya.html", gin.H{
+		"title": "Medya Galerisi",
+	})
+}
+
+func ShowAboutPage(c *gin.Context) {
+	c.HTML(http.StatusOK, "hakkimizda.html", gin.H{
+		"title": "Hakkımızda",
+	})
+}
+
+// ShowContactPage, "İletişim" sayfasını oluşturur.
+func ShowContactPage(c *gin.Context) {
+	c.HTML(http.StatusOK, "iletisim.html", gin.H{
+		"title": "İletişim",
+	})
+}

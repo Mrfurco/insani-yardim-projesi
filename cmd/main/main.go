@@ -23,6 +23,12 @@ func main() {
 	// --- Public Rotalar ---
 	router.GET("/", handler.ListCampaigns)
 	router.GET("/kampanya/:id", handler.ShowCampaign)
+	router.GET("/kampanyalar", handler.ShowCampaignsPage)
+	router.GET("/haberler", handler.ShowNewsPage)
+	router.GET("/sss", handler.ShowFaqsPage)
+	router.GET("/medya", handler.ShowMediaPage)
+	router.GET("/hakkimizda", handler.ShowAboutPage)
+	router.GET("/iletisim", handler.ShowContactPage)
 
 	// --- Admin Grubu ve Rotaları ---
 	adminGroup := router.Group("/admin")

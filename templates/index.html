@@ -35,7 +35,7 @@
                     <h1 class="display-4 fw-bold">İyiliğe Açılan Kapı</h1>
                     <p class="lead my-4">Küçük bir yardım, büyük bir umut olabilir. Dünyanın dört bir yanındaki ihtiyaç sahiplerine el uzatmak için bize katılın.</p>
                     <a href="#" class="btn btn-lg btn-custom-lime">Online Bağış</a>
-                    <a href="#" class="btn btn-outline-light btn-lg">Projelerimiz</a>
+                    <a href="/kampanyalar" class="btn btn-outline-light btn-lg">Kampanyalarımız</a>
                 </div>
             </div>
         </div>
@@ -112,6 +112,70 @@
         </div>
     </section>
 
+    <section class="winter-campaign-section py-5">
+    <div class="container">
+        <div class="row text-center mb-5">
+            <div class="col-lg-8 mx-auto">
+                <h2 class="section-title">Bir Çocuğu Giydir, Bir Kalbi Isıt</h2>
+                <p class="lead text-muted">Seçtiğin her giysi, bir çocuğun daha sıcak bir kış geçirmesini ve yüzünün gülmesini sağlayacak.</p>
+            </div>
+        </div>
+
+        <div class="row align-items-center">
+            <div class="col-lg-5 text-center mb-4 mb-lg-0">
+                <div class="child-animation-wrapper">
+                    <img id="child-state-base" src="/static/img/child_0_base.png" alt="Yardım Bekleyen Çocuk" class="child-image active">
+                    <img id="child-state-mont" src="/static/img/child_1_mont.png" alt="Mont Giymiş Çocuk" class="child-image">
+                    <img id="child-state-mont_atki-bere" src="/static/img/child_2_mont_atki.png" alt="Mont ve Atkılı Çocuk" class="child-image">
+                    <img id="child-state-mont_atki-bere_bot" src="/static/img/child_3_tamami.png" alt="Mutlu Çocuk" class="child-image">
+                    <img id="child-state-atki-bere" src="/static/img/child_4_atki.png" alt="Atkı ve Bereli Çocuk" class="child-image">
+                    <img id="child-state-bot" src="/static/img/child_5_bot.png" alt="Bot Giymiş Çocuk" class="child-image">
+                    <img id="child-state-atki-bere_bot" src="/static/img/child_6_atki_bot.png" alt="Atkı ve Bot Giymiş Çocuk" class="child-image">
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="donation-options">
+                    <div class="donation-item" data-price="250" data-item="mont">
+                        <div class="item-icon"><i class="bi bi-person-fill"></i></div>
+                        <div class="item-details">
+                            <h5 class="item-name">Sıcak Bir Mont</h5>
+                            <p class="item-desc">Soğuk kış günlerinde onu koruyacak.</p>
+                        </div>
+                        <div class="item-price">250 TL</div>
+                    </div>
+                    <div class="donation-item" data-price="75" data-item="atki-bere">
+                        <div class="item-icon"><i class="bi bi-snow"></i></div>
+                        <div class="item-details">
+                            <h5 class="item-name">Atkı & Bere Seti</h5>
+                            <p class="item-desc">Sıcacık tutan bir ikili.</p>
+                        </div>
+                        <div class="item-price">75 TL</div>
+                    </div>
+                    <div class="donation-item" data-price="150" data-item="bot">
+                        <div class="item-icon"><i class="bi bi-badge-8k-fill"></i></div>
+                        <div class="item-details">
+                            <h5 class="item-name">Kışlık Bot</h5>
+                            <p class="item-desc">Ayaklarını soğuktan ve sudan korur.</p>
+                        </div>
+                        <div class="item-price">150 TL</div>
+                    </div>
+                </div>
+
+                <div class="donation-summary mt-4">
+                    <div class="total-price">
+                        <span>Toplam Tutar:</span>
+                        <strong id="total-amount">0 TL</strong>
+                    </div>
+                    <button class="btn btn-lg btn-custom-lime w-100">
+                        <i class="bi bi-cart-plus-fill me-2"></i>Sepete Ekle
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <!-- HABERLER (SLIDER) -->
     <section class="news-section py-5">
         <div class="container">
@@ -120,12 +184,45 @@
             <div class="slider-container position-relative">
                 <div class="swiper news-slider">
                     <div class="swiper-wrapper">
-                        
+                    
+                    {{ if .data.posts }}
                         {{ range .data.posts }}
                             {{ template "_news_card.html" . }}
                         {{ end }}
-    
-                    </div>
+                    {{ else }}
+                        <div class="swiper-slide">
+                            <div class="card h-100 shadow-sm campaign-card">
+                                <img src="https://images.pexels.com/photos/3227986/pexels-photo-3227986.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Ramazan Yardımı">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Ramazan Ayında İftar Sofraları Kuruldu</h5>
+                                    <p class="card-text text-muted small flex-grow-1">Bu mübarek ayda, gönüllülerimiz ve bağışçılarımızın desteğiyle on binlerce kişiye sıcak iftar yemeği ulaştırdık.</p>
+                                    <a href="#" class="btn btn-primary btn-custom-lime mt-3">Devamını Oku</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card h-100 shadow-sm campaign-card">
+                                <img src="https://images.pexels.com/photos/2519392/pexels-photo-2519392.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Su Kuyusu">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Somali'de 5 Yeni Su Kuyusu Hizmete Açıldı</h5>
+                                    <p class="card-text text-muted small flex-grow-1">Kuraklıkla mücadele eden Somali köylerinde, binlerce insanın temiz suya erişimini sağlayan yeni su kuyularımızı açtık.</p>
+                                    <a href="#" class="btn btn-primary btn-custom-lime mt-3">Devamını Oku</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="card h-100 shadow-sm campaign-card">
+                                <img src="https://images.pexels.com/photos/8947622/pexels-photo-8947622.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img-top" alt="Kurban Yardımı">
+                                <div class="card-body d-flex flex-column">
+                                    <h5 class="card-title">Kurban Bayramı Vekaletleri Sahiplerine Ulaştı</h5>
+                                    <p class="card-text text-muted small flex-grow-1">Bu Kurban Bayramı'nda da bizlere emanet ettiğiniz vekaletler, 20'den fazla ülkede ihtiyaç sahiplerine ulaştırıldı.</p>
+                                    <a href="#" class="btn btn-primary btn-custom-lime mt-3">Devamını Oku</a>
+                                </div>
+                            </div>
+                        </div>
+                    {{ end }}
+
+                </div>
                 </div>
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
@@ -315,6 +412,69 @@
                 clickable: true,
             },
         });
+
+// ===================================
+// İNTERAKTİF ANİMASYON SCRİPTİ (AKILLI VERSİYON)
+// ===================================
+
+const donationItems = document.querySelectorAll('.donation-item');
+const totalAmountEl = document.getElementById('total-amount');
+let totalAmount = 0;
+
+// Resimleri güncelleyen ana fonksiyon
+function updateChildImage() {
+    // Hangi giysilerin seçili olduğunu kontrol edelim
+    const hasMont = document.querySelector('.donation-item[data-item="mont"]').classList.contains('selected');
+    const hasAtkiBere = document.querySelector('.donation-item[data-item="atki-bere"]').classList.contains('selected');
+    const hasBot = document.querySelector('.donation-item[data-item="bot"]').classList.contains('selected');
+
+    let imageIdToShow = 'child-state-base'; // Varsayılan resim
+
+    // Hiyerarşik kontrol: En dolu kombinasyondan en boşa doğru kontrol ediyoruz.
+    if (hasMont && hasAtkiBere && hasBot) {
+        imageIdToShow = 'child-state-mont_atki-bere_bot'; // 3'ü de seçili
+    } else if (hasMont && hasAtkiBere) {
+        imageIdToShow = 'child-state-mont_atki-bere'; // Mont ve Atkı/Bere
+    } else if (hasAtkiBere && hasBot) {
+        imageIdToShow = 'child-state-atki-bere_bot'; // YENİ: Sadece Atkı/Bere ve Bot
+    } else if (hasMont && hasBot) {
+        imageIdToShow = 'child-state-mont'; // Mont ve Bot (en mantıklısı montlu resim)
+    } else if (hasMont) {
+        imageIdToShow = 'child-state-mont'; // Sadece Mont
+    } else if (hasAtkiBere) {
+        imageIdToShow = 'child-state-atki-bere'; // Sadece Atkı/Bere
+    } else if (hasBot) {
+        imageIdToShow = 'child-state-bot'; // Sadece Bot
+    }
+    // Önce tüm resimleri gizle
+    document.querySelectorAll('.child-image').forEach(img => img.classList.remove('active'));
+
+    // Sonra doğru resmi göster
+    const activeImage = document.getElementById(imageIdToShow);
+    if (activeImage) {
+        activeImage.classList.add('active');
+    }
+}
+
+// Her bir giysi butonuna tıklama olayı ekle
+donationItems.forEach(item => {
+    item.addEventListener('click', () => {
+        item.classList.toggle('selected');
+        const price = parseInt(item.dataset.price);
+
+        if (item.classList.contains('selected')) {
+            totalAmount += price;
+        } else {
+            totalAmount -= price;
+        }
+
+        totalAmountEl.innerText = totalAmount + ' TL';
+        updateChildImage();
+    });
+});
+
+// Sayfa ilk yüklendiğinde doğru resmin göründüğünden emin ol
+updateChildImage();
     </script>
     
     

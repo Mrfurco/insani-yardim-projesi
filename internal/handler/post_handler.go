@@ -122,3 +122,14 @@ func DeletePost(c *gin.Context) {
 	repository.DB.Delete(&model.Post{}, id)
 	c.Redirect(http.StatusFound, "/admin/haberler")
 }
+
+// ShowNewsPage, tüm haberleri listeleyen sayfayı oluşturur.
+func ShowNewsPage(c *gin.Context) {
+	var posts []model.Post
+	repository.DB.Order("id desc").Find(&posts)
+
+	c.HTML(http.StatusOK, "haberler.html", gin.H{
+		"title": "Tüm Haberler",
+		"data":  gin.H{"posts": posts},
+	})
+}
